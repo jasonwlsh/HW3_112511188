@@ -1,5 +1,5 @@
 # HW3 Sentiment Anaysis README
-這份 README 是用來重現我這次 HW3 模型的。依照下面步驟操作即能重現我的結果。
+這份 README 是用來重現我這次 HW3 模型的，依照下面步驟操作即能重現我的結果。
 
 ---
 
