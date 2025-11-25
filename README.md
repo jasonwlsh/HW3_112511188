@@ -3,9 +3,10 @@
 
 ---
 
-## 1. 檔案放的位置
+## 1. 檔案存放位置
+我將檔案存在Google Drive中，並使用Colab的GPU來跑模型
 
-我在 Google Drive 裡用以下結構：
+以下是我在 Google Drive 裡使用的結構：
 
 ```
 MyDrive/HW3/
@@ -24,7 +25,8 @@ MyDrive/HW3/
 
 ## 2. 在 Colab 重現
 
-### (1) 掛載 Drive
+
+### (1) 掛載 Google Drive
 ```python
 from google.colab import drive
 drive.mount('/content/drive')
@@ -39,7 +41,7 @@ drive.mount('/content/drive')
 
 ---
 
-## 3. 執行完後會輸出的資料（請助教確認）
+## 3. 執行完後會輸出的資料
 
 程式跑完後會生成：
 
@@ -58,17 +60,9 @@ saved_deberta_base_2025_BEST/
  └── summary.json
 ```
 
-重現是否成功可以看：
-
-- checkpoint 是否存在（尤其是 `.safetensors`）
-- summary.json 是否存在  
-- loss / accuracy 曲線是否生成  
-- confusion matrix 是否生成  
-- validation accuracy 是否跟我報告的差不多（差 0.01 左右很正常）
-
 ---
 
-## 4. 訓練超參數
+## 4. 超參數
 
 | 參數 | 值 |
 |------|------|
@@ -80,7 +74,7 @@ saved_deberta_base_2025_BEST/
 | Train/Val split | 9:1 |
 | Precision | AMP (fp16) |
 
-`summary.json` 也會記錄這些資訊。
+跑完模型後，在 `summary.json` 內也有存以上超參數的資訊
 
 ---
 
