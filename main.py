@@ -27,11 +27,11 @@ from tqdm.auto import tqdm
 try:
     import sentencepiece
 except ImportError:
-    !pip install sentencepiece transformers scikit-learn pandas tqdm matplotlib seaborn --quiet
+    pass
 
 BASE_DIR = "/content/drive/MyDrive/HW3/"
 DATASET_PATH = os.path.join(BASE_DIR, "dataset/dataset.csv")
-OUTPUT_FOLDER = "saved_deberta_base_2025_BEST"
+OUTPUT_FOLDER = "saved_models"
 OUT_DIR = os.path.join(BASE_DIR, OUTPUT_FOLDER)
 os.makedirs(OUT_DIR, exist_ok=True)
 
@@ -201,14 +201,27 @@ def train_solo_model():
     checkpoint_dir = os.path.join(OUT_DIR, "checkpoint")
     os.makedirs(checkpoint_dir, exist_ok=True)
 
+    if not os.path.exists(DATASET_PATH):
+        print(f"Dataset not found at {DATASET_PATH}")
+        return
+
     full = pd.read_csv(DATASET_PATH)
     full = full.sample(frac=1, random_state=SEED).reset_index(drop=True)
+    
     train_df, val_df = train_test_split(
         full,
         test_size=0.1,
         stratify=full["label"],
         random_state=SEED,
     )
+
+    dataset_folder = os.path.dirname(DATASET_PATH)
+    if not os.path.exists(dataset_folder):
+        os.makedirs(dataset_folder)
+
+    train_df.to_csv(os.path.join(dataset_folder, "train.csv"), index=False)
+    val_df.to_csv(os.path.join(dataset_folder, "val.csv"), index=False)
+    val_df.to_csv(os.path.join(dataset_folder, "test.csv"), index=False)
 
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
     train_ds = SentimentDataset(train_df, tokenizer)
