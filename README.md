@@ -26,9 +26,9 @@ MyDrive/HW3_112511188/
 ---
 ## 2. 環境設定 (Environment)
 
-本作業是在colab上執行的，雖然colab已經下載好大部分模組，但為確保版本一致
+本作業是在Colab上執行的，雖然Colab已經下載好大部分模組，但為確保版本一致
 
-請先在colab開啟terminal並安裝所有requirements：
+請先在Colab開啟terminal並安裝所有requirements：
 
 ```bash
 cd drive/MyDrive/HW3_112511188
@@ -118,4 +118,4 @@ saved_models/
 
 ---
 
-依照上述步驟在 **colab 上執行** 就能完整重現我的結果。
+依照上述步驟在 **Colab 上執行** 就能完整重現我的結果。
