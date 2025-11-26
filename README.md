@@ -25,12 +25,18 @@ pip install -r requirements.txt
 ## 2. 檔案結構 (File Structure)
 
 請在 Colab 中掛載 Google Drive，並使用以下結構：
+
+(解壓縮我的檔案後直接匯入Google Drive即可)
 ```
-MyDrive/HW3/
+MyDrive/HW3_112511188/
 ├── dataset/
-│   └── dataset.csv
-├── solo_train_deberta_base.py
-├── saved_deberta_base_2025_BEST/   # 一開始沒有，執行後會生成
+│   ├── dataset.csv
+│   ├── train.csv
+│   ├── val.csv
+│   └── test.csv
+├── main.py
+├── saved_models/   # 一開始沒有，執行後會生成
+├── 112511188.pdf
 └── requirements.txt
 ```
 ---
@@ -79,7 +85,7 @@ drive.mount('/content/drive')
 執行後會產生：
 
 ```
-saved_deberta_base_2025_BEST/
+saved_models/
  ├── checkpoint/
  ├── loss_curve.png
  ├── val_accuracy_curve.png
