@@ -4,27 +4,11 @@
 
 ---
 
-## 1. 環境設定 (Environment)
+## 1. 檔案結構 (File Structure)
 
-本作業是在colab上執行的。  
-請先安裝所有requirements：
+請在Colab 變更執行階段類型中選擇T4 GPU
 
-```bash
-pip install -r requirements.txt
-```
-
-使用的主要工具：
-- Python 3.x  
-- PyTorch + CUDA（colab 預設環境）  
-- Transformers  
-- scikit-learn  
-- pandas / numpy  
-
----
-
-## 2. 檔案結構 (File Structure)
-
-請在 Colab 中掛載 Google Drive，並使用以下結構：
+並在Google Drive內下載好以下結構：
 
 (解壓縮我的檔案後直接匯入Google Drive即可)
 ```
@@ -40,8 +24,50 @@ MyDrive/HW3_112511188/
 └── requirements.txt
 ```
 ---
+## 2. 環境設定 (Environment)
 
-## 3. 訓練超參數 (Hyperparameters)
+本作業是在colab上執行的，雖然colab已經下載好大部分模組，但為確保版本一致
+
+請先在colab開啟terminal並安裝所有requirements：
+
+```bash
+cd drive/MyDrive/HW3_112511188
+pip install -r requirements.txt
+```
+
+使用的主要工具：
+- Python 3  
+- PyTorch + CUDA（colab 預設環境）  
+- Transformers  
+- scikit-learn  
+- pandas / numpy  
+
+
+---
+
+## 3. 在 Colab 上執行 
+
+### **(1) 掛載 Google Drive**
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+### **(2) 執行訓練**
+```python
+python /content/drive/MyDrive/HW3_112511188/main.py
+```
+
+程式會自動：
+- 讀入 dataset
+- 切分 train/val
+- 執行訓練（使用 AMP）
+- 儲存最佳 checkpoint
+
+
+---
+
+## 4. 訓練超參數 (Hyperparameters)
 
 | 參數 | 值 |
 |------|------|
@@ -56,27 +82,6 @@ MyDrive/HW3_112511188/
 | Precision | AMP (fp16) |
 
 所有參數會寫進 `summary.json`，可以去裡面查看。
-
----
-
-## 4. 在 colab 上執行方式 
-
-### **(1) 掛載 Google Drive**
-```python
-from google.colab import drive
-drive.mount('/content/drive')
-```
-
-### **(2) 執行訓練**
-```python
-!python /content/drive/MyDrive/HW3/solo_train_deberta_base.py
-```
-
-程式會自動：
-- 讀入 dataset
-- 切分 train/val
-- 執行訓練（使用 AMP）
-- 儲存最佳 checkpoint
 
 ---
 
@@ -109,7 +114,7 @@ saved_models/
 - Backbone：DeBERTa-v3-Base  
 - Head：Linear → GELU → Dropout → Linear  
 - Loss：CrossEntropyLoss  
-（架構整合於 `solo_train_deberta_base.py`）
+（架構整合於 `main.py`）
 
 ---
 
